@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  html, body { width: 100%; height: 100%; overflow: hidden; }
+  .scene { position: relative; width: 100%; height: 100%; background: radial-gradient(120% 140% at 78% 10%, #241a4a 0%, #0d0a26 42%, #08061a 100%); }
+  .kicker { position: absolute; top: 7%; left: 6%; display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 1.5vh; letter-spacing: 0.12em; text-transform: uppercase; }
+  .kicker .dot { width: 0.9vh; height: 0.9vh; border-radius: 50%; }
+  .headline { position: absolute; top: 15%; left: 6%; right: 8%; font-size: 4.2vh; font-weight: 800; line-height: 1.18; letter-spacing: -0.015em; color: #f8f7ff; }
+  .subhead { position: absolute; top: 34%; left: 6%; right: 20%; font-size: 1.9vh; font-weight: 500; line-height: 1.5; color: rgba(226,222,255,0.78); }
+  .brand { position: absolute; top: 6%; right: 6%; text-align: right; display: flex; align-items: center; gap: 10px; }
+  .brand-name { font-weight: 700; font-size: 1.6vh; color: #f8f7ff; }
+  .brand-tag { font-weight: 500; font-size: 1.2vh; color: rgba(226,222,255,0.55); margin-top: 1px; }
+  .brand-dot { width: 3.6vh; height: 3.6vh; border-radius: 1vh; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.7vh; color: #fff; }
+  .skyline { position: absolute; left: 0; right: 0; bottom: 0; height: 46%; }
+  .bld { position: absolute; bottom: 0; background: linear-gradient(180deg, #241a4a 0%, #170f34 100%); border-top: 1.5px solid rgba(167,139,250,0.22); }
+  .shield-wrap { position: absolute; right: 9%; bottom: 8%; width: 15%; height: 58%; }
+</style>
+</head>
+<body>
+  <div class="scene" id="scene">
+    <div class="kicker" id="kicker" style="display:none;"><span class="dot" id="kickerDot"></span><span id="kickerText"></span></div>
+    <div class="brand">
+      <div>
+        <div class="brand-name" id="brandName" style="display:none;"></div>
+        <div class="brand-tag" id="brandTag" style="display:none;"></div>
+      </div>
+      <div class="brand-dot" id="brandDot" style="display:none;"></div>
+    </div>
+    <div class="headline" id="headline"></div>
+    <div class="subhead" id="subhead" style="display:none;"></div>
+    <div class="skyline" id="skyline"></div>
+    <svg class="shield-wrap" id="shieldWrap" viewBox="0 0 260 300" preserveAspectRatio="xMidYMax meet">
+      <defs>
+        <linearGradient id="shieldGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop id="shieldStop1" offset="0%"/>
+          <stop id="shieldStop2" offset="100%"/>
+        </linearGradient>
+        <linearGradient id="shieldFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#241a4a" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#150c33" stop-opacity="0.95"/>
+        </linearGradient>
+      </defs>
+      <path d="M130,10 L230,50 L230,150 C230,225 185,270 130,295 C75,270 30,225 30,150 L30,50 Z" fill="url(#shieldFill)" stroke="url(#shieldGrad)" stroke-width="5"/>
+      <path d="M130,90 L130,190 M95,140 L165,140" stroke="url(#shieldGrad)" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="130" cy="140" r="9" fill="#f8f7ff"/>
+    </svg>
+    <svg class="crack" id="crackSvg" style="position:absolute; left:0; bottom:0; width:26%; height:58%;" viewBox="0 0 420 560" preserveAspectRatio="xMidYMax meet">
+      <defs>
+        <linearGradient id="crackGrad" x1="0" y1="1" x2="0" y2="0">
+          <stop id="crackStop" offset="0%" stop-opacity="0.95"/>
+          <stop offset="100%" stop-opacity="0.05"/>
+        </linearGradient>
+      </defs>
+      <path d="M60,560 L78,470 L58,430 L92,360 L70,300 L108,240 L86,190 L130,140 L118,95" stroke="url(#crackGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+<script>
+const CONFIG = /*__CONFIG__*/{};
+
+const accentA = CONFIG.accent || '#a78bfa';
+const accentB = CONFIG.accentSecondary || '#38bdf8';
+const dangerColor = CONFIG.dangerColor || '#f87171';
+
+document.getElementById('shieldStop1').setAttribute('stop-color', accentA);
+document.getElementById('shieldStop2').setAttribute('stop-color', accentB);
+document.getElementById('crackStop').setAttribute('stop-color', dangerColor);
+
+if (CONFIG.kicker) {
+  document.getElementById('kicker').style.display = 'flex';
+  document.getElementById('kicker').style.color = accentA;
+  document.getElementById('kickerDot').style.background = dangerColor;
+  document.getElementById('kickerDot').style.boxShadow = `0 0 8px ${dangerColor}`;
+  document.getElementById('kickerText').textContent = CONFIG.kicker;
+}
+
+document.getElementById('headline').textContent = CONFIG.title || CONFIG.headline || 'Untitled';
+
+if (CONFIG.subtitle || CONFIG.subhead) {
+  const s = document.getElementById('subhead');
+  s.textContent = CONFIG.subtitle || CONFIG.subhead;
+  s.style.display = 'block';
+}
+
+if (CONFIG.brand) {
+  document.getElementById('brandName').style.display = 'block';
+  document.getElementById('brandName').textContent = CONFIG.brand;
+  document.getElementById('brandDot').style.display = 'flex';
+  document.getElementById('brandDot').style.background = `linear-gradient(135deg, ${accentA}, ${accentB})`;
+  document.getElementById('brandDot').textContent = (CONFIG.brand || 'M').trim().charAt(0).toUpperCase();
+  if (CONFIG.brandTag) {
+    document.getElementById('brandTag').style.display = 'block';
+    document.getElementById('brandTag').textContent = CONFIG.brandTag;
+  }
+}
+
+if (CONFIG.hideShield) {
+  document.getElementById('shieldWrap').style.display = 'none';
+}
+if (CONFIG.hideCrack) {
+  document.getElementById('crackSvg').style.display = 'none';
+}
+
+// Procedural skyline, matches the width actually rendered
+const skyline = document.getElementById('skyline');
+const sceneWidth = window.innerWidth || 1200;
+const widths = [70,55,90,60,100,50,80,65,110,58,75,95,60,85,70,120,55,90,65,100,80,60,95,70,55,110,65,85];
+let x = 0;
+const scale = sceneWidth / 1200;
+widths.forEach((wRaw) => {
+  const w = wRaw * scale;
+  const h = (70 + Math.random() * 130) * scale;
+  const b = document.createElement('div');
+  b.className = 'bld';
+  b.style.left = x + 'px';
+  b.style.width = w + 'px';
+  b.style.height = h + 'px';
+  skyline.appendChild(b);
+  x += w + 8 * scale;
+  if (x > sceneWidth) return;
+});
+</script>
+</body>
+</html>

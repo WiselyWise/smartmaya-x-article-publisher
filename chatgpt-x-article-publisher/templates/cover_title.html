@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%; height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    overflow: hidden;
+  }
+  .wrap {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    padding: 0 8%;
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1.4px, transparent 1.4px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(90% 90% at 30% 40%, black 30%, transparent 85%);
+  }
+  .accent-bar {
+    width: 64px; height: 6px; border-radius: 3px;
+    margin-bottom: 28px;
+    position: relative; z-index: 2;
+  }
+  .kicker {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    opacity: 0.85;
+    position: relative; z-index: 2;
+  }
+  .title {
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1.12;
+    color: #f3f4f7;
+    max-width: 90%;
+    letter-spacing: -0.01em;
+    position: relative; z-index: 2;
+  }
+  .subtitle {
+    font-size: 24px;
+    font-weight: 400;
+    color: #9aa2b8;
+    margin-top: 20px;
+    max-width: 78%;
+    line-height: 1.4;
+    position: relative; z-index: 2;
+  }
+  .brand {
+    position: absolute;
+    bottom: 40px; right: 56px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.45);
+    z-index: 2;
+  }
+  .glow {
+    position: absolute; width: 520px; height: 520px; border-radius: 50%;
+    filter: blur(10px);
+    z-index: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap" id="wrap">
+    <div class="grid"></div>
+    <div class="glow" id="glow"></div>
+    <div class="accent-bar" id="accentBar"></div>
+    <div class="kicker" id="kicker" style="display:none;"></div>
+    <div class="title" id="title"></div>
+    <div class="subtitle" id="subtitle" style="display:none;"></div>
+    <div class="brand" id="brand" style="display:none;"></div>
+  </div>
+<script>
+const CONFIG = /*__CONFIG__*/{};
+
+const accent = CONFIG.accent || '#8ab4ff';
+const bg = CONFIG.background || 'radial-gradient(120% 140% at 15% 15%, #182036 0%, #0c0f1a 55%, #08090f 100%)';
+document.body.style.background = bg;
+
+document.getElementById('accentBar').style.background = accent;
+document.getElementById('glow').style.background = `radial-gradient(circle, ${accent}29, transparent 70%)`;
+document.getElementById('glow').style.left = '-120px';
+document.getElementById('glow').style.top = '50%';
+document.getElementById('glow').style.transform = 'translateY(-50%)';
+
+if (CONFIG.kicker) {
+  const k = document.getElementById('kicker');
+  k.textContent = CONFIG.kicker;
+  k.style.color = accent;
+  k.style.display = 'block';
+}
+
+document.getElementById('title').textContent = CONFIG.title || 'Untitled';
+
+if (CONFIG.subtitle) {
+  const s = document.getElementById('subtitle');
+  s.textContent = CONFIG.subtitle;
+  s.style.display = 'block';
+}
+
+if (CONFIG.brand) {
+  const b = document.getElementById('brand');
+  b.textContent = CONFIG.brand;
+  b.style.display = 'block';
+}
+</script>
+</body>
+</html>
