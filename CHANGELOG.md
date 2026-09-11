@@ -2,6 +2,13 @@
 
 All notable changes to X Article Publisher are documented here.
 
+## [1.1.1] - 2026-09-11
+
+### Added
+
+- Publishing-authority check: before the pre-publish approval step, the skill now identifies whether the logged-in session will post as a brand/company handle or any account other than the user's own personal profile, and asks for an explicit acknowledgement that they're authorized to publish on that organization's behalf. Documented in `SKILL.md` (all platform variants) and `SECURITY.md`.
+- `SECURITY.md`/`SKILL.md`: explicit statements on X Terms-of-Service risk from browser automation, no telemetry to WiselyWise infrastructure, and user responsibility for content/IP review before publishing — per WiselyWise's skills safety clause library.
+
 ## [1.1.0] - 2026-09-10
 
 ### Added

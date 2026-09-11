@@ -128,6 +128,13 @@ X.com in that browser — this skill never enters credentials.
   sessions.
 - Never enter X credentials, complete a login, or bypass a CAPTCHA — if the
   browser isn't already logged in, stop and tell the user.
+- Before the pre-publish checkpoint, check which identity the logged-in
+  session will post as. If it's a brand/company handle or any account that
+  isn't the user's own personal profile, say so explicitly and get a clear
+  acknowledgement that they're authorized to publish on that organization's
+  behalf — publishing under a brand's identity without that authority is a
+  reputational and agency risk this skill can't verify on its own, distinct
+  from (and in addition to) the content approval in the next rule.
 - Treat "post it automatically" from the user as authorization to draft and
   render automatically, not as authorization to skip the pre-publish review
   — the review step stays in place regardless of phrasing.
@@ -136,6 +143,12 @@ X.com in that browser — this skill never enters credentials.
   place (there is no in-place edit).
 - Don't assume the teaser post already exists just because the Article does
   — verify what's actually live before posting anything a second time.
+- The user is responsible for reviewing drafted content — Article text,
+  teaser-post text, and the generated cover image — for third-party
+  intellectual property, trademark, defamation, and confidentiality
+  concerns before approving publication. This skill drafts from what the
+  user provides; it does not verify legal clearance of names, quotes,
+  logos, or claims about third parties.
 
 ## Running the cover generator standalone
 
