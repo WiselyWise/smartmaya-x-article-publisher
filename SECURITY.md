@@ -15,6 +15,10 @@ Please do not open a public issue for a suspected security vulnerability. Email 
 
 We will acknowledge reports within 5 business days and work with you on a coordinated disclosure.
 
+## Reporting abuse or impersonation
+
+If you find a modified, forked, or redistributed copy of this skill using the "Smart Maya" or "WiselyWise" name, marks, or branding without permission, or a copy you believe is malicious, report it to **security@wiselywise.com** with the location (repository URL, marketplace listing, or platform) and what you observed. See [README.md](README.md) for what the license does and does not cover for modified copies.
+
 ## Scope
 
 X Article Publisher drafts Article and teaser-post copy, and renders a cover image locally via headless Chromium — no network calls beyond the X.com pages the browser automation actually visits. It never stores, requests, receives, or transmits X credentials, session cookies, or tokens: publishing works only inside a browser session the owner has already signed into, using whatever browser automation access the host agent environment provides (for example, Claude in Chrome). Granting that access is equivalent to granting a human assistant access to that logged-in browser tab, and should be treated with the same care.
