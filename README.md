@@ -89,3 +89,5 @@ See `SKILL.md` for the full workflow, the config shape for all three cover style
 ## License
 
 MIT — see [LICENSE](LICENSE). Contributions welcome.
+
+"Smart Maya" and "WiselyWise" are trademarks of WiselyWise Pte. Ltd. and are not covered by the MIT license above — a modified or forked copy must not use these names or imply WiselyWise authorship, review, or endorsement without permission. See smartmaya.ai/policies/terms-of-use for the full terms covering this skill.
